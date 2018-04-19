@@ -1,0 +1,76 @@
+{
+    "fields": [
+        {
+            "Field": "id",
+            "Type": "int(10) unsigned",
+            "Null": false,
+            "Key": "PRI",
+            "Default": null,
+            "Extra": "auto_increment"
+        },
+        {
+            "Field": "name",
+            "Type": "varchar(100)",
+            "Null": false,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "description",
+            "Type": "varchar(200)",
+            "Null": true,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "advertiser_uuid",
+            "Type": "varchar(36)",
+            "Null": false,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "seller_pub_uuid",
+            "Type": "varchar(36)",
+            "Null": true,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "seller_pub_uuid_type",
+            "Type": "int(11)",
+            "Null": true,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "update_dtime",
+            "Type": "timestamp",
+            "Null": false,
+            "Key": "",
+            "Default": "CURRENT_TIMESTAMP",
+            "Extra": "on update CURRENT_TIMESTAMP"
+        },
+        {
+            "Field": "create_dtime",
+            "Type": "timestamp",
+            "Null": false,
+            "Key": "",
+            "Default": "CURRENT_TIMESTAMP",
+            "Extra": "on update CURRENT_TIMESTAMP"
+        }
+    ],
+    "relationsFromTable": [],
+    "relationsToTable": [
+        {
+            "localField": "id",
+            "foreignTable": "advertiser_ad",
+            "foreignField": "advertiser_campaign_id"
+        }
+    ]
+}

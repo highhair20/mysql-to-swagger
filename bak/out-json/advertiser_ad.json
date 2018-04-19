@@ -1,0 +1,96 @@
+{
+    "fields": [
+        {
+            "Field": "id",
+            "Type": "int(10) unsigned",
+            "Null": false,
+            "Key": "PRI",
+            "Default": null,
+            "Extra": "auto_increment"
+        },
+        {
+            "Field": "name",
+            "Type": "varchar(100)",
+            "Null": false,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "description",
+            "Type": "varchar(200)",
+            "Null": true,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "advertiser_campaign_id",
+            "Type": "int(10) unsigned",
+            "Null": false,
+            "Key": "",
+            "Default": null,
+            "Extra": "",
+            "isForeignKey": true
+        },
+        {
+            "Field": "start_date",
+            "Type": "datetime",
+            "Null": false,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "end_date",
+            "Type": "datetime",
+            "Null": false,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "status",
+            "Type": "int(1) unsigned",
+            "Null": false,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "update_dtime",
+            "Type": "timestamp",
+            "Null": false,
+            "Key": "",
+            "Default": "CURRENT_TIMESTAMP",
+            "Extra": "on update CURRENT_TIMESTAMP"
+        },
+        {
+            "Field": "create_dtime",
+            "Type": "timestamp",
+            "Null": false,
+            "Key": "",
+            "Default": "CURRENT_TIMESTAMP",
+            "Extra": "on update CURRENT_TIMESTAMP"
+        }
+    ],
+    "relationsFromTable": [
+        {
+            "localField": "advertiser_campaign_id",
+            "foreignTable": "advertiser_campaign",
+            "foreignField": "id"
+        }
+    ],
+    "relationsToTable": [
+        {
+            "localField": "id",
+            "foreignTable": "advertiser_ad_data",
+            "foreignField": "advertiser_ad_id"
+        },
+        {
+            "localField": "id",
+            "foreignTable": "advertiser_ad_push",
+            "foreignField": "advertiser_ad_id"
+        }
+    ]
+}

@@ -1,0 +1,436 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is the swagger document for the inMarket M2M Launch Dashboard.",
+    "version": "1.0.0",
+    "title": "M2M Launch Dashboard",
+    "termsOfService": "https://launch.inmarket.com/terms/",
+    "contact": {
+      "email": "dev@inmarket.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "localhost:10010",
+  "basePath": "/v1",
+  "tags": [
+    {
+      "name": "User",
+      "description": "Everything about a User",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "https://docs.inmarket.com/launch/user"
+      }
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "consumes": [ "application/json" ],
+  "produces": [ "application/json" ],
+  "paths": {
+    "/swagger": {
+      "x-swagger-pipe": "swagger_raw"
+    },
+    "/user": {
+      "x-swagger-router-controller": "User",
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "List users",
+        "description": "Returns a list of users with pagination. This can only be done by the logged in user.",
+        "operationId": "findUsers",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page_num",
+            "in": "query",
+            "description": "The page number to return resutls for a User",
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 1,
+            "allowEmptyValue": true,
+            "minimum": 1
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "The maximum page number to return resutls for a User",
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 20,
+            "allowEmptyValue": true,
+            "minimum": 1,
+            "maximum": 100
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "description": "field to sort by",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": true,
+            "default": "last_name",
+            "enum": [
+              "first_name",
+              "last_name",
+              "email",
+              "login"
+            ]
+          },
+          {
+            "name": "sort_dir",
+            "in": "query",
+            "description": "The sort direction for a list of users",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": true,
+            "default": "asc",
+            "enum": [
+              "asc",
+              "desc"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "403": {
+            "description": "Access Denied",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "x-security-scopes": [
+          "admin"
+        ],
+        "security": [
+          {
+            "Bearer" : []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Create user",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "createUser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Created user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          },
+          "403": {
+            "description": "Access Denied",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "x-security-scopes": [
+          "admin"
+        ],
+        "security": [
+          {
+            "Bearer" : []
+          }
+        ]
+      }
+    },
+    "/user/login": {
+      "x-swagger-router-controller": "User",
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Logs user into the system",
+        "description": "",
+        "operationId": "loginUser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "login",
+            "in": "query",
+            "description": "The user name for login",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "The password for login in clear text",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string"
+            },
+            "headers": {
+              "X-Rate-Limit": {
+                "type": "integer",
+                "format": "int32",
+                "description": "calls per hour allowed by the user"
+              },
+              "X-Expires-After": {
+                "type": "string",
+                "format": "date-time",
+                "description": "date in UTC when token expires"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid login/password supplied"
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "x-swagger-router-controller": "User",
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get user by id",
+        "description": "",
+        "operationId": "getUserById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The name that needs to be fetched. Use 1234 for testing. ",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Invalid id supplied"
+          },
+          "403": {
+            "description": "Access Denied",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "User not found"
+          }
+        },
+        "x-security-scopes": [
+          "admin"
+        ],
+        "security": [
+          {
+            "Bearer" : []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Updated user",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "updateUser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id that needs to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid user id supplied"
+          },
+          "403": {
+            "description": "Access Denied",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "User not found"
+          }
+        },
+        "x-security-scopes": [
+          "admin"
+        ],
+        "security": [
+          {
+            "Bearer" : []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Delete user",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "deleteUser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id that needs to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid id supplied"
+          },
+          "403": {
+            "description": "Access Denied",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "User not found"
+          }
+        },
+        "x-security-scopes": [
+          "admin"
+        ],
+        "security": [
+          {
+            "Bearer" : []
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "login": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "User"
+      }
+    },
+    "Error" : {
+      "required" : [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}

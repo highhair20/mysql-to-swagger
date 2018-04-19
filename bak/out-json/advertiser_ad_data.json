@@ -1,0 +1,76 @@
+{
+    "fields": [
+        {
+            "Field": "id",
+            "Type": "int(10) unsigned",
+            "Null": false,
+            "Key": "PRI",
+            "Default": null,
+            "Extra": "auto_increment"
+        },
+        {
+            "Field": "name",
+            "Type": "varchar(100)",
+            "Null": false,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "value",
+            "Type": "varchar(2000)",
+            "Null": false,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "advertiser_ad_id",
+            "Type": "int(10) unsigned",
+            "Null": false,
+            "Key": "MUL",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "update_dtime",
+            "Type": "timestamp",
+            "Null": false,
+            "Key": "",
+            "Default": "CURRENT_TIMESTAMP",
+            "Extra": "on update CURRENT_TIMESTAMP"
+        },
+        {
+            "Field": "create_dtime",
+            "Type": "timestamp",
+            "Null": false,
+            "Key": "",
+            "Default": "CURRENT_TIMESTAMP",
+            "Extra": "on update CURRENT_TIMESTAMP"
+        },
+        {
+            "Field": "scope",
+            "Type": "enum('server','client')",
+            "Null": false,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "description",
+            "Type": "varchar(400)",
+            "Null": true,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        }
+    ],
+    "relationsFromTable": [
+        {
+            "localField": "advertiser_ad_id",
+            "foreignTable": "advertiser_ad",
+            "foreignField": "id"
+        }
+    ],
+    "relationsToTable": []
+}

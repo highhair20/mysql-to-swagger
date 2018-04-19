@@ -1,0 +1,54 @@
+{
+    "fields": [
+        {
+            "Field": "uuid",
+            "Type": "varchar(36)",
+            "Null": false,
+            "Key": "PRI",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "name",
+            "Type": "varchar(100)",
+            "Null": false,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "description",
+            "Type": "varchar(200)",
+            "Null": true,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "private_key",
+            "Type": "varchar(36)",
+            "Null": true,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "update_dtime",
+            "Type": "timestamp",
+            "Null": false,
+            "Key": "",
+            "Default": "CURRENT_TIMESTAMP",
+            "Extra": "on update CURRENT_TIMESTAMP"
+        },
+        {
+            "Field": "create_dtime",
+            "Type": "timestamp",
+            "Null": false,
+            "Key": "",
+            "Default": "CURRENT_TIMESTAMP",
+            "Extra": "on update CURRENT_TIMESTAMP"
+        }
+    ],
+    "relationsFromTable": [],
+    "relationsToTable": []
+}

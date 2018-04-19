@@ -1,0 +1,164 @@
+{
+    "fields": [
+        {
+            "Field": "id",
+            "Type": "int(10) unsigned",
+            "Null": false,
+            "Key": "PRI",
+            "Default": null,
+            "Extra": "auto_increment"
+        },
+        {
+            "Field": "advertiser_ad_id",
+            "Type": "int(10) unsigned",
+            "Null": false,
+            "Key": "MUL",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "split_index",
+            "Type": "int(10) unsigned",
+            "Null": false,
+            "Key": "",
+            "Default": "1",
+            "Extra": ""
+        },
+        {
+            "Field": "message",
+            "Type": "varchar(2000)",
+            "Null": true,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "interstitial",
+            "Type": "varchar(2000)",
+            "Null": true,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "deeplink",
+            "Type": "varchar(2000)",
+            "Null": true,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "status",
+            "Type": "tinyint(4)",
+            "Null": true,
+            "Key": "",
+            "Default": "1",
+            "Extra": ""
+        },
+        {
+            "Field": "update_dtime",
+            "Type": "timestamp",
+            "Null": false,
+            "Key": "",
+            "Default": "CURRENT_TIMESTAMP",
+            "Extra": "on update CURRENT_TIMESTAMP"
+        },
+        {
+            "Field": "create_dtime",
+            "Type": "timestamp",
+            "Null": false,
+            "Key": "",
+            "Default": "CURRENT_TIMESTAMP",
+            "Extra": "on update CURRENT_TIMESTAMP"
+        },
+        {
+            "Field": "network_ad",
+            "Type": "tinyint(4)",
+            "Null": true,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "dynamic_interstitial_image",
+            "Type": "varchar(2048)",
+            "Null": true,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "dynamic_interstitial_url",
+            "Type": "varchar(2048)",
+            "Null": true,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "dynamic_interstitial_pixel",
+            "Type": "varchar(2048)",
+            "Null": true,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "dynamic_interstitial_height",
+            "Type": "int(11)",
+            "Null": true,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "dynamic_interstitial_width",
+            "Type": "int(11)",
+            "Null": true,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "click_action",
+            "Type": "varchar(32)",
+            "Null": true,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "pixels",
+            "Type": "varchar(2048)",
+            "Null": true,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "dynamic_interstitial_html",
+            "Type": "varchar(2048)",
+            "Null": true,
+            "Key": "",
+            "Default": null,
+            "Extra": ""
+        },
+        {
+            "Field": "dynamic_interstitial_scrollable",
+            "Type": "tinyint(4)",
+            "Null": false,
+            "Key": "",
+            "Default": "0",
+            "Extra": ""
+        }
+    ],
+    "relationsFromTable": [
+        {
+            "localField": "advertiser_ad_id",
+            "foreignTable": "advertiser_ad",
+            "foreignField": "id"
+        }
+    ],
+    "relationsToTable": []
+}
